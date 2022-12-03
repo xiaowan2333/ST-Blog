@@ -461,9 +461,9 @@
               </option>
               <option name="name" value="StUser" />
               <option name="preName" value="st_" />
-              <option name="saveModelName" value="st-blog" />
-              <option name="savePackageName" value="top.one" />
-              <option name="savePath" value="./st-blog/src/main/java/top/one" />
+              <option name="saveModelName" value="common" />
+              <option name="savePackageName" value="top.one.domain" />
+              <option name="savePath" value="./common/src/main/java/top/one/domain" />
               <option name="templateGroupName" value="MybatisPlus" />
             </TableInfoDTO>
           </value>
