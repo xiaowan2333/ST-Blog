@@ -4,12 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import top.one.domain.Res;
 import top.one.domain.entity.LoginUser;
 import top.one.domain.entity.User;
 import top.one.domain.vo.BlogUserLoginVo;
-import top.one.domain.vo.UserInfoVo;
+import top.one.domain.vo.UserInfo;
 import top.one.service.BlogLoginService;
 import top.one.utils.BeanCopyUtils;
 import top.one.utils.JwtUtil;
@@ -20,6 +21,10 @@ import java.util.Objects;
 /**
  * @author: XiaoWan
  * @Date: 2022/12/3
+ */
+
+/**
+ * 登录登出功能
  */
 @Service
 public class BlogLoginServiceImpl implements BlogLoginService {
@@ -43,7 +48,17 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         String jwt = JwtUtil.createJWT(userId);
         //把token和userinfo封装返回
         redisCache.setCacheObject("bloglogin"+userId,loginUser);
-        UserInfoVo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfoVo.class);
+        UserInfo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfo.class);
         return new Res().ok(new BlogUserLoginVo(jwt,userInfoVo));
+    }
+
+    @Override
+    public Res logout() {
+        //删除redis中的用户信息缓存
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        Long id = loginUser.getUser().getId();
+        redisCache.deleteObject("bloglogin"+id);
+        return Res.okResult();
     }
 }

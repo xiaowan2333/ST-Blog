@@ -14,7 +14,7 @@ import top.one.service.ArticleService;
  * @Date: 2022/11/14
  */
 @RestController
-@RequestMapping("article")
+@RequestMapping("/article")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
@@ -23,7 +23,7 @@ public class ArticleController {
      * 获取热门文章list
      * @return
      */
-    @GetMapping("hotArticleList")
+    @GetMapping("/hotArticleList")
     public Res getHotArticle(){
         return  articleService.getHotArticle();
     }
@@ -31,12 +31,12 @@ public class ArticleController {
     /**
      * 获取所有（分类下）文章列表主页显示
      */
-    @GetMapping("articleList")
+    @GetMapping("/articleList")
     public Res articleList(Integer pageNum,Integer pageSize,Integer categoryId){
         return articleService.articleList(pageNum,pageSize,categoryId);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Res getArticleDetail(@PathVariable("id")Long  id){
         return articleService.getArticleDetail(id);
     }

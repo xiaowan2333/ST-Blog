@@ -10,4 +10,7 @@ import top.one.domain.entity.User;
 public interface BlogLoginService {
 
     Res login(User user);
+
+    Res logout();
+
 }

@@ -41,14 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/link/getAllLink").authenticated()
+                .antMatchers("/logout").authenticated()
                 .anyRequest().permitAll();
         //添加异常处理器
         http
                 .exceptionHandling()
                         .authenticationEntryPoint(authenticationEntryPoint)
                                 .accessDeniedHandler(accessDeniedHandler);
+        //关闭默认注销接口
         http.logout().disable();
+        //添加jwt认证过滤器
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.cors();
     }
