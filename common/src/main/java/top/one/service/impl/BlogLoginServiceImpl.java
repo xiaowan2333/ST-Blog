@@ -34,7 +34,8 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         //判断是否认证通过
         if(Objects.isNull(authenticate)) {
-            throw new RuntimeException("用户名或密码错误");
+            //BadCredentialsException
+            throw new RuntimeException("用户名或密码错误！！");
         }
         //获取用户id，生成token并存入redis中
         LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
