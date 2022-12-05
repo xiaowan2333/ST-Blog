@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class UserInfo {
+public class UserInfoVo {
     private Long id;
     //昵称
     private String nickName;

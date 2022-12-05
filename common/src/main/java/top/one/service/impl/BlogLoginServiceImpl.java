@@ -10,7 +10,7 @@ import top.one.domain.Res;
 import top.one.domain.entity.LoginUser;
 import top.one.domain.entity.User;
 import top.one.domain.vo.BlogUserLoginVo;
-import top.one.domain.vo.UserInfo;
+import top.one.domain.vo.UserInfoVo;
 import top.one.service.BlogLoginService;
 import top.one.utils.BeanCopyUtils;
 import top.one.utils.JwtUtil;
@@ -48,7 +48,7 @@ public class BlogLoginServiceImpl implements BlogLoginService {
         String jwt = JwtUtil.createJWT(userId);
         //把token和userinfo封装返回
         redisCache.setCacheObject("bloglogin"+userId,loginUser);
-        UserInfo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfo.class);
+        UserInfoVo userInfoVo = BeanCopyUtils.copyBean(loginUser.getUser(), UserInfoVo.class);
         return new Res().ok(new BlogUserLoginVo(jwt,userInfoVo));
     }
 

@@ -22,6 +22,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(Exception.class)
     public Res exceptionHandler(Exception e){
+        e.printStackTrace();
         log.error("出现了异常{}",e.getMessage());
         return Res.errorResult(AppHttpCodeEnum.SYSTEM_ERROR,e.getMessage());
     }

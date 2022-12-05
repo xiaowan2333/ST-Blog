@@ -1,6 +1,7 @@
 package top.one.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import top.one.domain.Res;
 import top.one.domain.entity.User;
 
 /**
@@ -11,5 +12,8 @@ import top.one.domain.entity.User;
  */
 public interface UserService extends IService<User> {
 
+    Res userInfo();
+
+    Res updateUserInfo(User user);
 }
 

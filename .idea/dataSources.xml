@@ -6,7 +6,7 @@
       <synchronize>true</synchronize>
       <remarks>centos7.6机器上的mysql</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.0.111:3306/st_blog</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.189.100:3306/st_blog</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
