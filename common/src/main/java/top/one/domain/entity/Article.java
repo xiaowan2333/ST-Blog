@@ -72,5 +72,11 @@ public class Article implements Serializable {
 
     @TableField(exist = false)
     private String categoryName;
+
+    //添加一个构造
+    public Article(Long id, Long viewCount) {
+        this.id = id;
+        this.viewCount = viewCount;
+    }
 }
 

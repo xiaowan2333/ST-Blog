@@ -19,6 +19,7 @@ import top.one.service.ArticleService;
 import org.springframework.stereotype.Service;
 import top.one.service.CategoryService;
 import top.one.utils.BeanCopyUtils;
+import top.one.utils.RedisCache;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,6 +37,9 @@ public class ArticleServiceImpl  extends ServiceImpl<ArticleDao,Article> impleme
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private RedisCache redisCache;
 
     /**
      * 获取热门文章标题
@@ -105,7 +109,16 @@ public class ArticleServiceImpl  extends ServiceImpl<ArticleDao,Article> impleme
         if (category!=null){
             articleDetailVo.setCategoryName(category.getName());
         }
+        //从redis获取浏览量
+        Integer viewCount = redisCache.getCacheMapValue("article:viewCount", id.toString());
+        articleDetailVo.setViewCount(viewCount.longValue());
         return Res.okResult(articleDetailVo);
+    }
+
+    @Override
+    public Res updateViewCount(Long id) {
+        redisCache.incrementCacheMapValue("article:viewCount",id.toString(),1);
+        return Res.okResult();
     }
 }
 

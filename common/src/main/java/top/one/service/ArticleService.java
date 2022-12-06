@@ -34,5 +34,12 @@ public interface ArticleService extends IService<Article>{
      * @return
      */
     Res getArticleDetail(Long id);
+
+    /**
+     * 根据文章id增加浏览量
+     * @param id
+     * @return
+     */
+    Res updateViewCount(Long id);
 }
 
