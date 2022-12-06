@@ -15,5 +15,7 @@ public interface UserService extends IService<User> {
     Res userInfo();
 
     Res updateUserInfo(User user);
+
+    Res register(User user);
 }
 

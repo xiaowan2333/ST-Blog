@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import top.one.annotion.SystemLog;
 import top.one.domain.Res;
 import top.one.service.UploadService;
 
@@ -16,6 +17,7 @@ public class UploadController {
     @Autowired
     private UploadService uploadService;
 
+    @SystemLog(businessName = "图片上传接口")
     @PostMapping("/upload")
     public Res uploadImg(MultipartFile img){
         return uploadService.uploadImg(img);

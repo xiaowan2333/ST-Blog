@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.one.annotion.SystemLog;
 import top.one.domain.Res;
 import top.one.service.CategoryService;
 
@@ -21,6 +22,7 @@ public class CategoryController {
      * 获取文章类别列表
      * @return
      */
+    @SystemLog(businessName = "获取文章类别列表")
     @GetMapping("getCategoryList")
     public Res getCategoryLisy(){
         return categoryService.getCategoryList();

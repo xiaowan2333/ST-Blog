@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.one.annotion.SystemLog;
 import top.one.domain.Res;
 import top.one.service.LinkService;
 
@@ -17,6 +18,7 @@ public class LinkController {
     @Autowired
     private LinkService linkService;
 
+    @SystemLog(businessName = "获取所有友链列表")
     @GetMapping("getAllLink")
     public Res getAllLink(){
         return linkService.getAllLink();
