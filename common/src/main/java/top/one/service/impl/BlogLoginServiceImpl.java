@@ -24,7 +24,7 @@ import java.util.Objects;
  */
 
 /**
- * 登录登出功能
+ * 前台登录登出功能
  */
 @Service
 public class BlogLoginServiceImpl implements BlogLoginService {
