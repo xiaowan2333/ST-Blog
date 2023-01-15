@@ -1,5 +1,6 @@
 package top.one.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import top.one.service.LinkService;
  */
 @RestController
 @RequestMapping("link")
+@ApiOperation(value = "友链评论列表",notes = "获取一页友链评论")
 public class LinkController {
     @Autowired
     private LinkService linkService;
